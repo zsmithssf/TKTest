@@ -35,4 +35,22 @@ function ($http, ENDPOINT_URL) {
             params: { access_token: token }
         });
     };
+}])
+.service('ServerAnswersService', ['$http', 'ENDPOINT_URL',
+function ($http, ENDPOINT_URL) {
+    var service = this,
+    path = 'TestResults/';
+    function getUrl() {
+        return ENDPOINT_URL + path;
+    }
+    service.create = function(answer, token) {
+        return $http({
+            url: getUrl(),
+            method: "POST",
+            data: JSON.stringify(answer),
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
 }]);

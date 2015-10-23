@@ -20,4 +20,25 @@ angular.module('TKServicesModule', [])
     {
         return questions.length;
     };
+})
+.service('TKAnswersService', function() {
+    var service = this;
+    var answerCategories = {
+        "competing": 0,
+        "collaborating": 0,
+        "compromising": 0,
+        "avoiding": 0,
+        "accommodating": 0
+    };
+    var answers = {};
+    
+    service.saveAnswer = function(questionNumber, answerCategory, option)
+    {
+        answerCategories[answerCategory.toLowerCase()]++;
+        answers[questionNumber] = option;
+    };
+    service.getAnswers = function()
+    {
+        return answerCategories;
+    };
 });
