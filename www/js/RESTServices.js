@@ -53,4 +53,10 @@ function ($http, ENDPOINT_URL) {
             }
         });
     };
+    service.all = function(userID, token)
+    {
+        return $http.get(getUrl()+"?filter[where][userID]="+userID,{
+            params: { access_token: token }
+        });
+    };
 }]);
