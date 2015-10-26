@@ -11,6 +11,7 @@ function($http, ENDPOINT_URL) {
         return $http.post(getUrl(), user);
     };
     service.login = function(user) {
+        user["ttl"] = 1209600000;
         return $http.post(getUrl()+"login",user);
     };
     service.logout = function(token) {
