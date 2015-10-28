@@ -5,9 +5,6 @@ describe('Controllers', function(){
     beforeEach(module('starter.controllers'));
     beforeEach(module('RESTConnection'));
     beforeEach(module('SSFAlerts'));
-    beforeEach(module('IonicPushModule'));
-    beforeEach(module('TKServicesModule'));
-    beforeEach(module('ionic.service.push'));
     //Inject the scope and save it in a variable
     beforeEach(inject(function($rootScope, $controller) {
         scope = $rootScope.$new();
