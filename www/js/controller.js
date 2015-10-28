@@ -12,26 +12,32 @@ function($scope, $state, UserService, $ionicHistory, $window, SSFAlertsService) 
             .then(function(response) {
                 if (response.status === 200) {
                     //should return a token
-                    console.log(response);
-                    $window.localStorage["userID"] = response.data.userId;
-                    $window.localStorage['token'] = response.data.id;
                     $ionicHistory.nextViewOptions({
                         historyRoot: true,
                         disableBack: true
                     });
                 $state.go('lobby');
-                $window.localStorage["rememberMe"] = $scope.checkbox.rememberMe;
+                
+                $window.localStorage["userID"] = response.data.userId;
+                $window.localStorage['token'] = response.data.id;
+                
                 if($scope.checkbox.rememberMe) {
                     $window.localStorage["username"] = $scope.user.email;
                 }else {
                     delete $window.localStorage["username"];
                     $scope.user.email = "";
                 }
+                $window.localStorage["rememberMe"] = $scope.checkbox.rememberMe;
                 $scope.user.password = "";
                 form.$setPristine();
               } else {
                   //invalid response
-                  SSFAlertsService.showAlert("Error", "Something went wrong, try again.");
+                  if(response.status === 401)
+                    {
+                        SSFAlertsService.showAlert("Error","Incorrect username or password");
+                    }else {
+                        SSFAlertsService.showAlert("Error", "Something went wrong, try again.");
+                    }
               }
           }, function(response) {
               //Code 401 corresponds to Unauthorized access, in this case, the email/password combination was incorrect.
