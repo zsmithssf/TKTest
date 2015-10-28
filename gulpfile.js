@@ -5,7 +5,5 @@ gulp.task('test', function(done) {
     configFile: __dirname + '/tests/my.conf.js',
     singleRun: true,
     autoWatch: false
-  }, function() {
-    done();
-  });
+  }, done).start();
 });

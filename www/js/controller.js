@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl',['$scope', '$state', 'UserService', '$ionicHistory', '$window', 'SSFAlertsService',
 function($scope, $state, UserService, $ionicHistory, $window, SSFAlertsService) {
     $scope.user = {};
-    
+    $scope.title = "Login";
     $scope.loginSubmitForm = function(form)
     {
         if(form.$valid)
